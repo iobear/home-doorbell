@@ -45,10 +45,14 @@ func tellPushover() {
 
 	resp, err := http.PostForm("https://api.pushover.net:443/1/messages.json", data)
 	if err != nil {
-		log.Printf("Error sending push: %v", err)
+		log.Printf("Error sending push notification: %v", err)
 		return
 	}
-	resp.Body.Close()
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		log.Printf("Received non-OK response when sending push notification: %v", resp.Status)
+	}
 }
 
 func main() {
