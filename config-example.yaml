@@ -1,0 +1,7 @@
+pin: "17"
+wav_file: "doorbell.wav"
+pushover:
+  token: "<pushover.net token>"
+  user: "<pushover.net user>"
+  message: "Doorbell"
+
